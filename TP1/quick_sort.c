@@ -37,12 +37,43 @@
 // Your implementation.
 ////////////////////////////////////////////////////////////////////////////////
 
+//  complexité O(NlogN)
+
+void swap(long int* a, long int* b) {
+    long int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(long int* array, int left, int right) {
+    long int pivot = array[right];
+    int i = left - 1;
+
+    for (int j = left; j < right; j++) {
+        if (array[j] <= pivot) {
+            i++;
+            swap(&array[i], &array[j]);
+        }
+    }
+
+    swap(&array[i + 1], &array[right]); 
+    return i + 1;
+}
+
+void quicksort(long int* array, int left, int right) {
+    if (left < right) {
+        int pivotIndex = partition(array, left, right);
+        quicksort(array, left, pivotIndex - 1);
+        quicksort(array, pivotIndex + 1, right);
+    }
+}
+
 long int* custom_sort(size_t size, long int* const array)
 {
-  /* TO DO. */
-  (void) size; (void) array;
-  return array;
+    quicksort(array, 0, size - 1);
+    return array;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Other required functions.
