@@ -37,27 +37,29 @@
 // Your implementation.
 ////////////////////////////////////////////////////////////////////////////////
 
+// Dans le pire des cas la complexité est O(n²) et dans le meilleur cas O(n)
+
 long int* custom_sort(size_t size, long int* const array)
 {
-  bool swapped = true;
+  bool echanger = true;
   size_t start = 0; 
   size_t end = size - 1; 
 
-  while (swapped) {
-    swapped = false; 
+  while (echanger) {
+    echanger = false; 
 
     for (size_t i = start; i < end; ++i) {
       if (array[i] > array[i + 1]) {
         long int temp = array[i];
         array[i] = array[i + 1];
         array[i + 1] = temp;
-        swapped = true; 
+        echanger = true; 
       }
     }
 
     end--;
 
-    if (!swapped) {
+    if (!echanger) {
       break;
     }
 
@@ -66,16 +68,12 @@ long int* custom_sort(size_t size, long int* const array)
         long int temp = array[i];
         array[i] = array[i - 1];
         array[i - 1] = temp;
-        swapped = true;
+        echanger = true;
       }
     }
     start++;
   }
   
-  return array;
-
-
-  (void) size; (void) array;
   return array;
 }
 
